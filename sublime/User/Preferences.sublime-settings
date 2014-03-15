@@ -1,0 +1,9 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"default_line_ending": "unix",
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"translate_tabs_to_spaces": false
+}
