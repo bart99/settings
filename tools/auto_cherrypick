@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+for i in `cat $1 | cut -d ' ' -f 1`
+do
+	if git cherry-pick $i
+	then
+		echo git cherry-pick success $i 
+	else
+		echo git cherry-pick failed $i
+		break
+	fi
+done

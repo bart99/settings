@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. /etc/rc.common
+
+StartService()
+{
+	sleep 15
+	sudo route -nv add 192.168.5.0/24 10.10.141.254
+	sudo route -nv add 192.168.4.0/24 10.10.141.254
+}
+ 
+StopService()
+{
+	echo "StopService";
+}
+ 
+RestartService()
+{
+	echo "RestartService";
+}
+
+RunService "$1"

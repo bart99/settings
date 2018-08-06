@@ -1,0 +1,31 @@
+function dex-method-count() {
+	cat $1 | head -c 92 | tail -c 4 | hexdump -e '1/4 "%d\n"'
+}
+
+function dex-method-count-by-package() {
+	dir=$(mktemp -d -t dex)
+	baksmali $1 -o $dir
+	for pkg in `find $dir/* -type d`; do
+		smali $pkg -o $pkg/classes.dex
+		count=$(dex-method-count $pkg/classes.dex)
+		name=$(echo ${pkg:(${#dir} + 1)} | tr '/' '.')
+		echo -e "$count\t$name"
+	done
+	rm -rf $dir
+}
+
+function dex-field-count(){
+	cat $1 | head -c 84 | tail -c 4 | hexdump -e '1/4 "%d\n"'
+}
+
+function dex-field-count-by-package() {
+	dir=$(mktemp -d -t dex)
+	baksmali $1 -o $dir
+	for pkg in `find $dir/* -type d`; do
+		smali $pkg -o $pkg/classes.dex
+		count=$(dex-field-count $pkg/classes.dex)
+		name=$(echo ${pkg:(${#dir} + 1)} | tr '/' '.')
+		echo -e "$count\t$name"
+	done
+	rm -rf $dir
+}

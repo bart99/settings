@@ -1,0 +1,35 @@
+#!/bin/bash 
+
+HOFFICE_ROOT=/Users/shpark/work/hoffice9/
+
+function command() {
+	echo ===== $1 ======
+	cd $1
+
+	
+	if git checkout $2
+	then
+		echo 'checkout success'
+	else
+		echo 'checkout failed'
+		exit
+	fi
+
+	if git config remote.origin.push "refs/heads/$2:refs/for/$2"
+	then
+		echo 'config success'
+	else
+		echo 'config failed'
+		exit
+	fi
+}
+
+command $HOFFICE_ROOT'Hwp' $1
+command $HOFFICE_ROOT'Common' $1
+command $HOFFICE_ROOT'libhsp' $1
+command $HOFFICE_ROOT'cairo-android' $1
+command $HOFFICE_ROOT'harfbuzz' $1
+command $HOFFICE_ROOT'leadtools' $1
+command $HOFFICE_ROOT'libxml2' $1
+command $HOFFICE_ROOT'apc' $1
+

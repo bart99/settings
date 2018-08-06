@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+git checkout $1
+git config remote.origin.push "refs/heads/$1:refs/for/$1"

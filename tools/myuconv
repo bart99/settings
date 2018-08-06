@@ -1,0 +1,4 @@
+#!/bin/sh
+
+uconv -f cp-949 -t utf-8 --add-signature $@ > $@_1
+mv $@_1 $@
